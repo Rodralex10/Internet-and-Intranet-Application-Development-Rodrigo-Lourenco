@@ -1,0 +1,170 @@
+/* Q1: External CSS file applied */
+
+/* General styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    text-align: center;
+}
+
+/* Q2: Two paragraphs with different styles */
+.styled-paragraph {
+    font-family: "Courier New", monospace;
+    background-color: darkblue;
+    border: 10px solid black;
+    text-align: left;
+    text-shadow: 3px 3px 1px navajowhite;
+}
+
+.styled-paragraph2 {
+    font-family: "Georgia", serif;
+    background-color: lightgreen;
+    border: dashed 2px yellow;
+    text-align: right;
+    text-shadow: 4px 1px 1px blueviolet;
+}
+
+/* Q3: Paragraph with multiple columns */
+.multi-column {
+    column-count: 3; /* Split into 2 columns */
+    column-gap: 20px; /* Space between columns */
+    text-align: justify; /* Optional: Makes text look better */
+}
+
+
+/* Q4: Italic and bold text */
+.italic {
+    font-style: italic;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+/* Q5: Hyperlink styling */
+/* Remove o sublinhado do link */
+.custom-link {
+    text-decoration: none;
+    color: blue; /* Mantém a cor padrão do link (opcional) */
+}
+
+.custom-link:visited {
+    color: purple; /* Color for visited links */
+}
+
+.custom-link:hover {
+    color: red;
+}
+
+
+
+/* Q6: Image gallery */
+/* Q6: Image gallery - Ensure images stay in a row and are responsive */
+.gallery {
+    display: flex; /* Makes images align in a single row */
+    justify-content: center; /* Centers them horizontally */
+    gap: 10px; /* Adds spacing between images */
+    flex-wrap: wrap; /* Allows wrapping when the screen is too small */
+}
+
+.gallery img {
+    width: 100px; /* Ensures images are uniform in size */
+    height: auto;
+}
+
+
+/* Q7: Table styling */
+/* Q7: Table Formatting */
+
+/* Style the table */
+table {
+    width: 60%;
+    border-collapse: collapse;
+    margin: 20px auto;
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+/* Style the caption */
+caption {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* Style the table header */
+th {
+    background-color: greenyellow; /* Green background */
+    color: black;
+    padding: 10px;
+    border: 1px solid black;
+}
+
+/* Style the table data cells */
+td {
+    padding: 10px;
+    border: 1px solid black;
+}
+
+/* Different colors for odd and even rows */
+tr:nth-child(even) {
+    background-color: darkgray; /* Light gray */
+}
+
+tr:nth-child(odd) {
+    background-color: white; /* White */
+}
+
+/* Hover effect */
+tr:hover {
+    background-color: darkkhaki; /* Slightly darker gray */
+    cursor: pointer;
+}
+
+
+/* Q8: Rotate and Scale Down Animation (Looping) */
+/* Mantém a página normal, sem centralizar tudo */
+body {
+    background-color: #f0f0f0; /* Apenas um fundo opcional */
+    margin: 20px; /* Mantém a página com margem */
+}
+
+/* Centraliza o quadrado na página sem afetar o restante */
+.container {
+    display: flex;
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
+    height: 300px; /* Ajuste conforme necessário */
+}
+
+/* Animação: Rotação e Redução */
+@keyframes rotateScale {
+    0% {
+        transform: rotate(0deg) scale(1);
+    }
+    50% {
+        transform: rotate(180deg) scale(0.8);
+    }
+    100% {
+        transform: rotate(360deg) scale(1);
+    }
+}
+
+/* Quadrado animado */
+.animated-box {
+    width: 200px;
+    height: 200px;
+    display: flex;
+    justify-content: center; /* Centraliza o nome dentro do quadrado */
+    align-items: center; /* Centraliza verticalmente */
+    background-color: #4CAF50; /* Quadrado verde */
+    border: 5px solid black;
+    border-radius: 10px;
+    animation: rotateScale 3s linear infinite; /* Animação contínua */
+}
+
+
+
+
+
