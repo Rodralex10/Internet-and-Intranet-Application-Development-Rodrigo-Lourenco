@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise Number 3 Rodrigo Lourenço</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function updateModalContent(title, content) {
+            document.querySelector("#myModal .modal-title").textContent = title;
+            document.querySelector("#myModal .modal-body").textContent = content;
+        }
+    </script>
+    <style>
+        .navbar {
+            background-color: darkgreen;
+        }
+        .navbar-brand, .nav-link {
+            color: yellow !important;
+        }
+        .navbar-toggler {
+            border: 2px solid yellow;
+        }
+        .card {
+            padding: 20px;
+        }
+        .footer {
+            background-color: lawngreen;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            margin-top: 20px;
+        }
+
+        /* Adiciona barra de rolagem horizontal */
+        .card table {
+            width: 100%;
+            min-width: 600px; /* Evita que a tabela fique muito estreita */
+            border-collapse: collapse;
+        }
+
+        .card th, .card td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        .card th {
+            background-color: #f8f9fa;
+            font-weight: bold;
+        }
+
+        .card {
+            overflow-x: auto; /* Permite a rolagem horizontal */
+        }
+
+        /* Ajuste para dispositivos móveis */
+        @media (max-width: 768px) {
+            .card table {
+                font-size: 12px;
+            }
+            .card th, .card td {
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg">
+    <div class="container">
+        <a class="navbar-brand" href="#"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSuBzM9geOUZ6diPvG_3LC_GbLZAkNURKdeMA&s" alt="Logo" width="40"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="https://www.instagram.com/vlcizilina/">Instagram VLCI Žilina</a></li>
+                <li class="nav-item"><a class="nav-link" href="https://www.facebook.com/vlcizilina/">Facebook VLCI Žilina</a></li>
+                <li class="nav-item"><a class="nav-link" href="https://eshop.vlcizilina.sk/">E-Shop VLCI Žilina</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-lg-9">
+            <h2>Main content</h2>
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-3">
+                    <div class="card">
+                        <h5>Three Buttons</h5>
+                        <button type="button" class="btn btn-primary">Primary</button>
+                        <button type="button" class="btn btn-warning">Warning</button>
+                        <button type="button" class="btn btn-danger">Danger</button>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-3">
+                    <div class="card">
+                        <h5>Curiosities About VLCI Žilina</h5>
+                        <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="The club was named MsHK Žilina before.">Curiosity 1 (Tooltip)</button>
+                        <button type="button" class="btn btn-info" data-bs-toggle="popover" title="Curiosity 2" data-bs-content="The club was founded on 25 January 1925.">Curiosity 2 (Popover)</button>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal" onclick="updateModalContent('Why is the club called VLCI Žilina?', 'The team is nicknamed VLCI, it means Wolves in English.')">Curiosity 3 (Modal)</button>
+                    </div>
+                </div>
+                <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Modal Title</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                This is a modal content.
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-12 mb-3">
+                    <div class="card">
+                        <h5>Extraliga Classification</h5>
+                        <div style="overflow-x: auto;">
+                            <table class="table table-striped table-hover">
+                                <tr><th>#</th><th>Team</th><th>G</th><th>V</th><th>D</th><th>+DIF</th><th>PTS</th></tr>
+                                <tr><td>1</td><td>Spišská NV</td><td>54</td><td>36</td><td>18</td><td>+21</td><td>104</td></tr>
+                                <tr><td>2</td><td>HC Košice</td><td>54</td><td>33</td><td>21</td><td>+42</td><td>101</td></tr>
+                                <tr><td>3</td><td>HK Nitra</td><td>54</td><td>33</td><td>21</td><td>+34</td><td>97</td></tr>
+                                <tr><td>4</td><td>VLCI Žilina</td><td>54</td><td>34</td><td>20</td><td>+28</td><td>94</td></tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <h5>Text</h5>
+            VLCI Žilina is a well-regarded ice hockey club based in Žilina, Slovakia. Competing in the Slovak Extraliga, the team is known for its strong performances and loyal fanbase. The club plays its home games at the Štadión pod Dubňom, where the atmosphere is always lively and supportive. VLCI Žilina is dedicated to developing young talent and maintaining a competitive team, continuing to be a significant force in Slovak ice hockey.
+        </div>
+    </div>
+</div>
+
+<div class="footer">
+    Footer
+</div>
+
+<script>
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl);
+    });
+
+    var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'));
+    var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+        return new bootstrap.Popover(popoverTriggerEl);
+    });
+</script>
+</body>
+</html>
