@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Students Management</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>Student Management</h1>
+
+<h2>Add New Student</h2>
+<form id="studentForm">
+    <label for="firstName">First Name: </label><input type="text" id="firstName" required><br>
+    <label for="lastName">Last Name: </label><input type="text" id="lastName" required><br>
+    <label for="yearOfBirth">Year of Birth: </label><input type="number" id="yearOfBirth" required><br>
+    <label for="group">Group: </label><input type="text" id="group" required><br>
+    <label for="isErasmus">Erasmus: </label><input type="checkbox" id="isErasmus"><br>
+    <label for="grades">Grades (comma-separated): </label><input type="text" id="grades" required><br>
+    <button type="submit">Add Student</button>
+</form>
+
+<h2>Student List</h2>
+<ul id="studentList"></ul>
+
+<h2>Student Operations</h2>
+<button id="sortStudents">Sort by Grade Average</button>
+<button id="filterErasmus">Show Erasmus Students</button>
+<button id="bestAndWorst">Find Best and Worst Students</button>
+
+<script>
+    class Person {
+        constructor(firstName, lastName, yearOfBirth) {
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.yearOfBirth = yearOfBirth;
+        }
+        get fullName() {
+            return `${this.firstName} ${this.lastName}`;
+        }
+
+        set yearOfBirth(year) {
+            this._yearOfBirth = year;
+        }
+
+        get age() {
+            const currentYear = new Date().getFullYear();  // Get current year
+            return currentYear - this._yearOfBirth;  // Calculate age
+        }
+
+        printInfo() {
+            console.log(`Name: ${this.fullName}, Age: ${this.age}, Year of Birth: ${this._yearOfBirth}`);
+        }
+    }
+
+    class Student extends Person {
+        constructor(firstName, lastName, yearOfBirth, group, isErasmus, grades) {
+            super(firstName, lastName, yearOfBirth);
+            this.group = group;
+            this.isErasmus = isErasmus;
+            this.grades = grades;
+        }
+
+        printStudentInfo() {
+            console.log(`Student: ${this.fullName}, Group: ${this.group}, Erasmus: ${this.isErasmus ? "Yes" : "No"}`);
+        }
+
+        calculateAverageGrades() {
+            const total = this.grades.reduce((sum, grade) => sum + grade, 0);
+            return total / this.grades.length;
+        }
+    }
+
+    // List of students
+    const students = generateRandomStudents();  // Initially generate random students
+
+    function displayStudents() {
+        const studentListElement = document.getElementById("studentList");
+        studentListElement.innerHTML = "";  // Clear the list first
+        students.forEach(student => {
+            const li = document.createElement("li");
+            li.textContent = `${student.fullName} - Group: ${student.group}, Erasmus: ${student.isErasmus ? "Yes" : "No"}`;
+            studentListElement.appendChild(li);
+        });
+    }
+
+    // Generate 10 random students
+    function generateRandomStudents() {
+        const groups = ["A", "B", "C", "D", "E"];
+        const fnames = ["Ema", "Sofia", "Nina", "Viktória", "Natália", "Patrik", "Jakub", "Samuel", "Michal", "Adam"];
+        const lnames = ["Kovác", "Mlynár", "Baca", "Rybár", "Král", "Pekár", "Kuchár", "Masiar", "Maliar", "Hrkút"];
+
+        const students = [];
+
+        for (let i = 0; i < 10; i++) {
+            const firstName = fnames[Math.floor(Math.random() * fnames.length)];
+            const lastName = lnames[Math.floor(Math.random() * lnames.length)];
+            const yearOfBirth = 2000 + Math.floor(Math.random() * 10);
+            const group = groups[Math.floor(Math.random() * groups.length)];
+            const isErasmus = Math.random() > 0.5;
+            const grades = Array.from({ length: 5 }, () => Math.floor(Math.random() * 5) + 1);
+
+            const student = new Student(firstName, lastName, yearOfBirth, group, isErasmus, grades);
+            students.push(student);
+        }
+
+        return students;
+    }
+
+    document.getElementById("studentForm").addEventListener("submit", function(e) {
+        e.preventDefault();
+
+        const firstName = document.getElementById("firstName").value;
+        const lastName = document.getElementById("lastName").value;
+        const yearOfBirth = parseInt(document.getElementById("yearOfBirth").value);
+        const group = document.getElementById("group").value;
+        const isErasmus = document.getElementById("isErasmus").checked;
+        const grades = document.getElementById("grades").value.split(",").map(Number);
+
+        const newStudent = new Student(firstName, lastName, yearOfBirth, group, isErasmus, grades);
+        students.push(newStudent);
+
+        displayStudents();
+
+        document.getElementById("studentForm").reset();
+    });
+
+    // Sort students avg
+    document.getElementById("sortStudents").addEventListener("click", function() {
+        students.sort((a, b) => b.calculateAverageGrades() - a.calculateAverageGrades());
+        displayStudents();
+    });
+
+    // Filter Erasmus Students
+    document.getElementById("filterErasmus").addEventListener("click", function() {
+        const erasmusStudents = students.filter(student => student.isErasmus);
+        const studentListElement = document.getElementById("studentList");
+        studentListElement.innerHTML = "";
+        erasmusStudents.forEach(student => {
+            const li = document.createElement("li");
+            li.textContent = `${student.fullName} - Group: ${student.group}, Erasmus: ${student.isErasmus ? "Yes" : "No"}`;
+            studentListElement.appendChild(li);
+        });
+    });
+
+    // find the best&worst students based avg
+    document.getElementById("bestAndWorst").addEventListener("click", function() {
+        if (students.length === 0) {
+            alert("No students to compare!");
+            return;
+        }
+
+        let bStudent = students[0];
+        let wStudent = students[0];
+
+        students.forEach(student => {
+            if (student.calculateAverageGrades() > bStudent.calculateAverageGrades()) {
+                bStudent = student; // Update b student
+            }
+
+            if (student.calculateAverageGrades() < wStudent.calculateAverageGrades()) {
+                wStudent = student; // Update w stud
+            }
+        });
+
+        alert(`Best Student: ${bStudent.fullName}, Average Grade: ${bStudent.calculateAverageGrades()}`);
+        alert(`Worst Student: ${wStudent.fullName}, Average Grade: ${wStudent.calculateAverageGrades()}`);
+    });
+
+    displayStudents();
+</script>
+</body>
+</html>
