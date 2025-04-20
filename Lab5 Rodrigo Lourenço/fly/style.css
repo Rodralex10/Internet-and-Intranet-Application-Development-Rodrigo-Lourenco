@@ -1,0 +1,173 @@
+:root {
+    --primary-color: dodgerblue;
+    --secondary-color: indianred;
+    --background-color: white;
+    --text-color: darkslategrey;
+    --menu-bg: grey;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--background-color);
+    min-height: 100vh;
+    transition: background-color 0.3s ease;
+    overflow: hidden;
+}
+
+#menu {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: white;
+    padding: 12px 24px;
+    border-radius: 50px;
+    box-shadow: var(--shadow);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    backdrop-filter: blur(10px);
+    z-index: 100;
+}
+
+#menu div {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: darkslategrey;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+#score, #timer, #level {
+    font-weight: 700;
+    color: dodgerblue;
+}
+
+#start, #reset {
+    background-color: dodgerblue;
+    color: white;
+    padding: 8px 20px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    border: none;
+    outline: none;
+}
+
+#start:hover, #reset:hover {
+    background-color: indianred;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.fly {
+    width: 40px;
+    height: 40px;
+    background-size: contain;
+    position: absolute;
+    cursor: pointer;
+    display: none;
+    transition: all 0.3s ease;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.fly:hover {
+    transform: scale(1.15) rotate(10deg);
+}
+
+.fly.normal {
+    background-image: url("https://pngimg.com/d/fly_PNG3950.png");
+}
+
+.fly.special {
+    background-image: url("https://static.vecteezy.com/system/resources/previews/024/079/138/non_2x/icon-parrot-fly-free-png.png");
+    animation: pulse 0.8s infinite alternate;
+}
+
+@keyframes pulse {
+    from { transform: scale(1); }
+    to { transform: scale(1.2); }
+}
+
+.color-picker {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    gap: 10px;
+    background: white;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    z-index: 100;
+}
+
+.color-option {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid white;
+    transition: transform 0.2s;
+}
+
+.color-option:hover {
+    transform: scale(1.1);
+}
+
+#game-over {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    display: none;
+}
+
+#game-over h2 {
+    color: dodgerblue;
+    margin-top: 0;
+}
+
+#play-again {
+    background-color: dodgerblue;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 15px;
+    transition: all 0.2s;
+}
+
+#play-again:hover {
+    background-color: indianred;
+    transform: translateY(-2px);
+}
+
+#record {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background: white;
+    padding: 10px 15px;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    font-weight: bold;
+    color: dodgerblue;
+    z-index: 100;
+}
+

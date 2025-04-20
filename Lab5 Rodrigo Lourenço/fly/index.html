@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fly Game by Rodrigo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="menu">
+    <div>Score: <span id="score">0</span></div>
+    <div>Timer: <span id="timer">30</span></div>
+    <div>Level: <span id="level">1</span></div>
+    <button id="start">Start</button>
+    <button id="reset">Reset</button>
+</div>
+
+<!--backg feature color -->
+
+<div class="color-picker">
+    <div class="color-option" style="background-color: #f5f7fa;" onclick="game.changeBgColor('#f5f7fa')"></div>
+    <div class="color-option" style="background-color: #33ff93;" onclick="game.changeBgColor('#33ff93')"></div>
+    <div class="color-option" style="background-color: #33fff6;" onclick="game.changeBgColor('#33fff6')"></div>
+    <div class="color-option" style="background-color: #fab1a0;" onclick="game.changeBgColor('#fab1a0')"></div>
+</div>
+
+<div id="game-over">
+    <h2>Game Over</h2>
+    <p>Final Score: <span id="final-score">0</span></p>
+    <p>Final Level: <span id="final-level">1</span></p>
+    <button id="play-again">Play Again</button>
+</div>
+
+<!--HS feature -->
+
+<div id="record">Record: <span id="highscore">0</span></div>
+
+<script src="script.js"></script>
+</body>
+</html>
+
