@@ -1,0 +1,10 @@
+version: '3'
+services:
+  web:
+    image: ghcr.io/thevajko/vaii-web-server:main
+    volumes:
+      - ../:/var/www/html/:cached
+    ports:
+      - 127.0.0.1:80:80
+    stdin_open: true
+    tty: true
