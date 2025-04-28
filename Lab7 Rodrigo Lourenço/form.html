@@ -1,0 +1,29 @@
+<h2>Add a New Book</h2>
+<form method="post" action="">
+    <label>Book Name:
+        <input type="text" name="name" required>
+    </label><br><br>
+
+    <label>Author Name:
+        <input type="text" name="author_name" required>
+    </label><br><br>
+
+    <label>Issue Date:
+        <input type="date" name="issue_date" required>
+    </label><br><br>
+
+    <label>Number of Pages:
+        <input type="number" name="number_pages" required>
+    </label><br><br>
+
+    <label>Genre:
+        <select name="genre" required>
+            <option value="romantic">romantic</option>
+            <option value="sci-fi">sci-fi</option>
+            <option value="crime fiction">crime fiction</option>
+            <option value="adventure">adventure</option>
+        </select>
+    </label><br><br>
+
+    <input type="submit" name="submit" value="Add Book">
+</form>
