@@ -56,6 +56,7 @@ $nextDirection = $direction === 'ASC' ? 'desc' : 'asc';
 <head>
     <meta charset="UTF-8">
     <title>Books List</title>
+    <link rel="stylesheet" href="style.css"> <!-- CSS REF -->
 </head>
 <body>
 
