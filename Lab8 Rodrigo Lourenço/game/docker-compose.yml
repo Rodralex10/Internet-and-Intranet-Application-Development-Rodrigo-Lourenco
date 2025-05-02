@@ -1,0 +1,9 @@
+version: '3.8'
+services:
+  php-apache:
+    image: php:8.2-apache
+    container_name: hangman
+    ports:
+      - "8080:80"
+    volumes:
+      - ./:/var/www/html/

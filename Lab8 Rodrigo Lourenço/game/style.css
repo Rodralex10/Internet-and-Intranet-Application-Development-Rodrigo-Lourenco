@@ -1,0 +1,28 @@
+body {
+    font-family: Arial, sans-serif;
+    background: lightgreen;
+    color: #333;
+    text-align: center;
+    padding: 40px;
+}
+
+#game {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    width: 400px;
+    margin: auto;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
+
+input[type="text"] {
+    width: 40px;
+    font-size: 20px;
+    text-align: center;
+}
+
+button {
+    margin-top: 10px;
+    padding: 5px 15px;
+    font-size: 16px;
+}

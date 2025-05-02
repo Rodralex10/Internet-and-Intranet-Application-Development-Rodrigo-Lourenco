@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hangman Game with Slovak Words</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>Hangman Game Slovakian Edition</h1>
+<div id="game">
+    <p id="word"></p>
+    <p id="guessed"></p>
+    <p id="attempts"></p>
+
+    <form id="guessForm" style="display: none;">
+        <label for="letter">Enter a letter:</label>
+        <input type="text" id="letter" maxlength="1" required>
+        <button type="submit">Guess</button>
+    </form>
+
+    <p id="result"></p>
+    <button onclick="restartGame()">Restart Game</button>
+</div>
+
+<script>
+    async function updateGame(letter = null, restart = false) {
+        const formData = new FormData();
+        if (restart) {
+            formData.append("restart", "1");
+        } else if (letter) {
+            formData.append("letter", letter);
+        }
+
+        const response = await fetch("hangman.php", {
+            method: "POST",
+            body: formData
+        });
+
+        const data = await response.json();
+
+        document.getElementById("word").innerText = "Word: " + data.display;
+        document.getElementById("guessed").innerText = "Guessed: " + data.guessed.join(", ");
+        document.getElementById("attempts").innerText = `Attempts: ${data.attempts}/${data.maxAttempts}`;
+
+        const form = document.getElementById("guessForm");
+        const input = document.getElementById("letter");
+        const result = document.getElementById("result");
+
+        if (data.won) {
+            result.innerText = "You won! Congratulations! The word was: " + data.word;
+            form.style.display = "none";
+        } else if (data.lost) {
+            result.innerText = "Game over! The word was: " + data.word;
+            form.style.display = "none";
+        } else {
+            result.innerText = "";
+            form.style.display = "block";
+            input.disabled = false;
+            input.focus();
+        }
+    }
+
+    document.getElementById("guessForm").addEventListener("submit", function (e) {
+        e.preventDefault();
+        const letter = document.getElementById("letter").value;
+        if (letter) {
+            updateGame(letter);
+            document.getElementById("letter").value = "";
+        }
+    });
+
+    function restartGame() {
+        updateGame(null, true);
+    }
+
+    updateGame();
+</script>
+</body>
+</html>
